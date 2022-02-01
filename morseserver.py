@@ -9,6 +9,22 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
     override the handle() method to implement communication to the
     client.
     """
+    code= {"0": "-----", "1": ".----", "2": "..---", "3": "...--", "4": "....-", "5": ".....", "6": "-....", "7": "--...", "8": "---..", "9": "----.", "A":".-","B":"-...","C":"-.-.","D":"-..","E":".","F":"..-."}
+    
+    def morse(zeichen):
+        if zeichen not in code: 
+            return
+        
+        for n in code:
+            
+        while True:
+            zahlen= input(":")
+            for z in zahlen:
+                print(z)
+                morse(z,led)
+
+            if zahlen == "#":
+                break
 
     def handle(self):
         # self.request is the TCP socket connected to the client
@@ -19,7 +35,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         self.request.sendall(self.data.upper())
 
 if __name__ == "__main__":
-    HOST, PORT = "localhost", 9999
+    HOST, PORT = "0.0.0.0", 9999
 
     # Create the server, binding to localhost on port 9999
     with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
